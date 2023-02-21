@@ -6,7 +6,10 @@ const connectDB = (url: string) => {
   mongoose
     .connect(url)
     .then(() => console.log('MongoDB connected'))
-    .catch((error) => console.log(error));
+    .catch((error) => {
+      console.log(error.message);
+      process.exit(1);
+    });
 };
 
 export default connectDB;
