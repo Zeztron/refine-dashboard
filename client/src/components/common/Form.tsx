@@ -12,6 +12,8 @@ import {
 } from '@pankod/refine-mui';
 import { FormProps } from 'interfaces/common';
 import CustomButton from './CustomButton';
+import { useNavigate } from '@pankod/refine-react-router-v6';
+import { ArrowBack } from '@mui/icons-material';
 
 const Form = ({
   type,
@@ -23,11 +25,21 @@ const Form = ({
   onFinishHandler,
   propertyImage,
 }: FormProps) => {
+  const navigate = useNavigate();
   return (
     <Box>
-      <Typography fontSize={25} fontWeight={700} color="#11142d">
-        {type} a Property
-      </Typography>
+      <Stack direction="row" justifyContent="space-between" alignItems="center">
+        <Typography fontSize={25} fontWeight={700} color="#11142d">
+          {type} a Property
+        </Typography>
+        <CustomButton
+          title="Go Back"
+          handleClick={() => navigate(-1)}
+          backgroundColor="#475be8"
+          color="#fcfcfc"
+          icon={<ArrowBack />}
+        />
+      </Stack>
       <Box mt={2.5} borderRadius="15px" padding="20px" bgcolor="#fcfcfc">
         <form
           style={{
