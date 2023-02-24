@@ -55,7 +55,14 @@ const getAllProperties: RequestHandler = async (
   }
 };
 
-const getPropertyDetails = async (req: Request, res: Response) => {};
+const getPropertyDetails = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const property = await Property.findOne({ _id: id }).populate('creator');
+
+  if (property) return res.status(200).json(property);
+
+  return res.status(404).json({ message: 'Property not found' });
+};
 
 const createProperty = async (req: Request, res: Response) => {
   try {
